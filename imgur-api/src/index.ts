@@ -1,12 +1,17 @@
 import express, { Express, Request, Response, NextFunction, } from "express";
 import dotenv from "dotenv";
 import axios from 'axios';
+import cors from 'cors';
 import { buildGalleryPathAndParameters } from './utils';
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
+
+app.use(cors({
+  origin: process.env.CORS_ALLOWED_ORIGIN
+}))
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Welcome to the Imgur Server");
@@ -32,3 +37,5 @@ app.get('/gallery', async (req: Request, res: Response, next: NextFunction) => {
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });
+
+export default app;
