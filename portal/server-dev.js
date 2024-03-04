@@ -22,7 +22,7 @@ app.get('/', async (req, res) => {
 
   try {
     const template = await vite.transformIndexHtml(url, fs.readFileSync('index.html', 'utf-8'));
-    const { render } = await vite.ssrLoadModule('/src/server.tsx');
+    const { render } = await vite.ssrLoadModule('/src/entries/server.tsx');
 
     let apiRequest = null;
     try {
