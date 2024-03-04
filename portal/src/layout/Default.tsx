@@ -14,7 +14,7 @@ export const DefaultLayout = ({ children }: { children: ReactNode}) => {
           </header>
         </div>
       </div>
-      <main className="mb-14">
+      <main className="mb-14 p-12 lg:p-18">
         {children}
       </main>
       <footer className="w-screen fixed bottom-0 bg-indigo-900 py-4 text-gray-100">
