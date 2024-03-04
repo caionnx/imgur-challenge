@@ -1,4 +1,4 @@
-const App = () => {
+const App = ({ initialState }: { initialState: ImgurRestApi.GalleryItem[] | undefined }) => {
   return (
     <main>
       <h1>Portal</h1>
@@ -7,6 +7,7 @@ const App = () => {
         <span></span>
         <button>Button</button>
       </div>
+      <pre>{JSON.stringify(initialState, null, 2)}</pre>
     </main>
   );
 };
