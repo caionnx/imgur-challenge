@@ -4,11 +4,13 @@ import { fileURLToPath } from 'url';
 import express from 'express';
 import axios from 'axios';
 import dotenv from "dotenv";
+import compression from 'compression';
 
 dotenv.config();
 
 const app = express();
 
+app.use(compression())
 app.use(express.static(path.resolve(path.dirname(fileURLToPath(import.meta.url)), 'dist/client'), { index: false }));
 
 app.get('/', async (req, res) => {
