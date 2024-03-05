@@ -1,3 +1,4 @@
+import React from 'react';
 import { MediaProps } from "./Thumbnail";
 import { useInView } from "react-intersection-observer";
 

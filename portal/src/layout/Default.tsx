@@ -1,4 +1,4 @@
-import {ReactNode} from "react";
+import React, {ReactNode} from "react";
 
 export const DefaultLayout = ({ children }: { children: ReactNode}) => {
   return (

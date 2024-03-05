@@ -1,3 +1,4 @@
+import React from "react";
 import { DefaultLayout } from "../layout/index";
 import { Thumbnail } from "../components/Thumbnail/Thumbnail";
 
