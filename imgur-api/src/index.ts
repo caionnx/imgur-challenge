@@ -2,7 +2,7 @@ import express, { Express, Request, Response, NextFunction, } from "express";
 import dotenv from "dotenv";
 import axios from 'axios';
 import cors from 'cors';
-import { buildGalleryPathAndParameters } from './utils';
+import { buildGalleryPathAndParameters, buildSearchPathAndParameters } from './utils';
 
 dotenv.config();
 
@@ -23,6 +23,23 @@ app.get('/gallery', async (req: Request, res: Response, next: NextFunction) => {
 
   try {
     const imgurReq = await axios.get(`https://api.imgur.com/3/gallery/${apiParameters}`, {
+      headers: {
+        Authorization: `Client-ID ${clientId}`
+      }
+    });
+    res.json(imgurReq.data);
+  }
+  catch (err) {
+    next(err)
+  }
+});
+
+app.get('/search', async (req: Request, res: Response, next: NextFunction) => {
+  const clientId = process.env.CLIENT_ID;
+  const apiParameters = buildSearchPathAndParameters(req.query);
+
+  try {
+    const imgurReq = await axios.get(`https://api.imgur.com/3/gallery/search/${apiParameters}`, {
       headers: {
         Authorization: `Client-ID ${clientId}`
       }

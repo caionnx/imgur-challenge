@@ -25,3 +25,21 @@ export function buildGalleryPathAndParameters(requestParameters: Record<string, 
   const queryParameters = Array.from(parameters.entries()).map(([ name, value ]) => `${name}=${value}`).join('&');
   return `${pathName}?${queryParameters}`
 }
+
+const GallerySearchValidPaths = new Map();
+GallerySearchValidPaths.set('sort', 'viral');
+GallerySearchValidPaths.set('window', 'week');
+GallerySearchValidPaths.set('page', '1');
+
+export function buildSearchPathAndParameters(requestParameters: Record<string, any>) {
+  const paths = new Map(GallerySearchValidPaths);
+
+  for (const param of Object.keys(requestParameters)) {
+    if (paths.has(param)) {
+      paths.set(param, requestParameters[param])
+    }
+  }
+
+  const pathName = Array.from(paths.values()).join('/');
+  return `${pathName}?q=${requestParameters.q}`
+}

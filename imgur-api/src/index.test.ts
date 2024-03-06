@@ -37,3 +37,14 @@ describe("GET /gallery", () => {
       })
   });
 });
+
+describe("GET /search", () => {
+  it("should return all data from default config", async () => {
+     return request(app).get("/search?q=cats")
+       .expect('Content-Type', /json/)
+       .expect(200)
+       .then((res) => {
+         expect(res.statusCode).toBe(200);
+       })
+  });
+});
