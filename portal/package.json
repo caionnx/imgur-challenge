@@ -15,6 +15,7 @@
   "author": "Caio Nunes",
   "license": "ISC",
   "devDependencies": {
+    "@tanstack/react-query": "^5.25.0",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",
     "@types/express": "^4.17.21",
