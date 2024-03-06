@@ -21,7 +21,7 @@ type ProviderValue = {
   parameters: Params;
   setParameters: Dispatch<SetStateAction<Params>>;
   data: ImgurRestApi.GalleryAlbum[] | undefined;
-  isLoading: boolean;
+  isFetching: boolean;
   error: Error | null;
 };
 
@@ -32,7 +32,7 @@ const defaultContextValue = {
   },
   setParameters: () => undefined,
   data: undefined,
-  isLoading: false,
+  isFetching: false,
   error: null,
 } as ProviderValue;
 
@@ -47,8 +47,8 @@ export const GalleryProvider = ({
 }) => {
   const [parameters, setParameters] = useState(defaultContextValue.parameters);
   const enabledQuery = useRef(false);
-  const { error, data, isLoading } = useQuery({
-    queryKey: ["gallery", JSON.stringify(parameters)],
+  const { error, data, isFetching, } = useQuery({
+    queryKey: ["gallery", parameters],
     queryFn: () => {
       return axios
         .get(
@@ -67,7 +67,7 @@ export const GalleryProvider = ({
 
   return (
     <GalleryContext.Provider
-      value={{ parameters, setParameters, data, isLoading, error }}
+      value={{ parameters, setParameters, data, isFetching, error }}
     >
       {children}
     </GalleryContext.Provider>
