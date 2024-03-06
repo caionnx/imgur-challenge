@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Thumbnail } from "../components/Thumbnail/Thumbnail";
+import { AlbumModal } from "../components/AlbumModal/AlbumModal";
 import { useGallery } from "../providers/GalleryProvider";
 
 export const Grid = () => {
   const { data, parameters, setParameters, isFetching } = useGallery();
+  const [selectedAlbum, setSelectedAlbum] =
+    useState<ImgurRestApi.GalleryAlbum>();
+
   const onClearSeach = () => {
     setParameters({ ...parameters, search: "" });
+  };
+
+  const onThumbnailClick = (id: string) => {
+    const album = data?.find((item) => item.id === id);
+    setSelectedAlbum(album);
+  };
+
+  const onCloseModal = () => {
+    setSelectedAlbum(undefined);
   };
 
   return (
@@ -38,6 +51,8 @@ export const Grid = () => {
           }
           return (
             <Thumbnail
+              onClick={onThumbnailClick}
+              id={item.id}
               title={item.title}
               key={item.id}
               media={firstMediaItem}
@@ -45,6 +60,7 @@ export const Grid = () => {
           );
         })}
       </div>
+      <AlbumModal onCloseModal={onCloseModal} album={selectedAlbum} />
     </>
   );
 };

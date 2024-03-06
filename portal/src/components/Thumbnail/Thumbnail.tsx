@@ -1,10 +1,12 @@
-import React from 'react';
+import React from "react";
 import { Image } from "./Image";
 import { Video } from "./Video";
 
 export type ThumbnailProps = {
   media: ImgurRestApi.Image;
   title: string;
+  id: string;
+  onClick: (id: string) => void;
 };
 
 export type MediaProps = {
@@ -12,9 +14,13 @@ export type MediaProps = {
   [rest: string]: unknown;
 };
 
-export const Thumbnail = ({ media, title }: ThumbnailProps) => {
+export const Thumbnail = ({ media, title, onClick, id }: ThumbnailProps) => {
   return (
-    <div className="flex relative justify-center rounded-sm border-r border-b border-l border-gray-900 bg-slate-800">
+    <div
+      tabIndex={0}
+      onClick={() => onClick(id)}
+      className="cursor-pointer flex relative justify-center rounded-sm border-r border-b border-l border-gray-900 bg-slate-800"
+    >
       {media.type === "video/mp4" ? (
         <Video media={media} />
       ) : (
