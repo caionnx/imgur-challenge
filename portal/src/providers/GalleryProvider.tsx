@@ -50,6 +50,15 @@ export const GalleryProvider = ({
   const { error, data, isFetching, } = useQuery({
     queryKey: ["gallery", parameters],
     queryFn: () => {
+      // Uses a different API in case of search
+      if (parameters.search) {
+        return axios
+          .get(
+            `https://imgur-api.fly.dev/search?q=${encodeURI(parameters.search)}`
+          )
+          .then((res) => res.data?.data);
+      }
+
       return axios
         .get(
           `https://imgur-api.fly.dev/gallery?${new URLSearchParams(parameters).toString()}`
