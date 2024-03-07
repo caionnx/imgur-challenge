@@ -1,22 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import ReactModal from "react-modal";
 
 export const AlbumModal = ({
   album,
+  isOpen,
   onCloseModal,
 }: {
   album: ImgurRestApi.GalleryAlbum | undefined;
+  isOpen: boolean;
   onCloseModal: () => void;
 }) => {
+  useEffect(() => {
+    const bodyElement = document.querySelector("body");
+
+    if (bodyElement) {
+      bodyElement.style.overflow = isOpen ? "hidden" : "auto";
+    }
+  }, [isOpen]);
+
   return (
     <ReactModal
-      isOpen={Boolean(album)}
-      className="fixed bg-slate-800/75 top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+      isOpen={isOpen}
+      className="fixed flex justify-center bg-slate-800/75 top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[100%] max-h-full"
     >
       <div className="relative w-full max-w-7xl max-h-full">
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
           <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-            <h3 className="text-xl font-medium text-gray-900 dark:text-white">
+            <h3 className="text-xl font-medium pr-4 text-gray-900 dark:text-white">
               {album?.title}
             </h3>
             <button
@@ -52,7 +62,7 @@ export const AlbumModal = ({
                         className="h-auto max-w-full"
                         draggable="false"
                         controls
-                        muted
+                        muted={album?.images.length > 1}
                         playsInline
                         autoPlay
                         loop
@@ -65,12 +75,13 @@ export const AlbumModal = ({
                       </video>
                     ) : (
                       <img
+                      className="max-w-full lg:max-w-xl"
                         alt={media.description || album?.title}
                         src={media.link}
                       />
                     )}
                   </center>
-                  <p className="text-base max-w-prose	leading-relaxed text-gray-500 dark:text-gray-400">
+                  <p className="text-base max-w-prose	leading-relaxed pt-2 dark:text-gray-100">
                     {media.description}
                   </p>
                 </div>
@@ -78,7 +89,7 @@ export const AlbumModal = ({
             })}
           </div>
           <div className="p-4 md:p-5 space-x-3 rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
-            <p className="text-base text-center	leading-relaxed text-gray-500 dark:text-gray-400">
+            <p className="text-base text-center	leading-relaxed dark:text-white">
               {album?.ups} ⬆️ / {album?.downs} ⬇️ / {album?.score} ⭐ /{" "}
               {album?.views} 👀
             </p>

@@ -5,9 +5,8 @@ export const Image = ({ media, ...rest }: MediaProps) => {
   return (
     <img
       {...rest}
-      className="object-cover h-72 max-w-full"
+      className="object-cover h-[28rem] md:h-72 max-w-full"
       height={300}
-      width={300}
       src={media.link}
       loading="lazy"
     />

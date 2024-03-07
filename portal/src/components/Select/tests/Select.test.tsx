@@ -22,7 +22,7 @@ describe("Select", () => {
     const selectElement = screen.getByRole("combobox");
 
     expect(selectElement).toBeInTheDocument();
-    expect(selectElement).toHaveAttribute("name", name);
+    expect(selectElement).toHaveAttribute("id", name);
 
     options.forEach(({ value, label }) => {
       const optionElement = screen.getByText(label);

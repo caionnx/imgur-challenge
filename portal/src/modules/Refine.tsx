@@ -55,8 +55,10 @@ export const Refine = () => {
   };
 
   return (
-    <div className="flex mb-8 space-x-4">
-      <Search {...searchInputProps} />
+    <div className="flex flex-col md:flex-row mb-8 space-y-4 md:space-y-0 md:space-x-4">
+      <div className="grow">
+        <Search {...searchInputProps} />
+      </div>
       {!parameters.search && (
         <>
           <Select {...sectionSelectProps} />

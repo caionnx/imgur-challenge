@@ -42,7 +42,7 @@ export const Grid = () => {
         </div>
       )}
       <div
-        className={`${isFetching ? "opacity-50" : ""} grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4`}
+        className={`${isFetching ? "opacity-50" : ""} grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4`}
       >
         {data?.map((item) => {
           const firstMediaItem = item.images && item.images[0];
@@ -60,7 +60,7 @@ export const Grid = () => {
           );
         })}
       </div>
-      <AlbumModal onCloseModal={onCloseModal} album={selectedAlbum} />
+      <AlbumModal isOpen={Boolean(selectedAlbum)} onCloseModal={onCloseModal} album={selectedAlbum} />
     </>
   );
 };

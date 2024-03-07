@@ -14,14 +14,13 @@ export const Video = ({ media }: MediaProps) => {
   return (
     <video
       ref={ref}
-      className="h-auto max-w-full"
+      className="h-[28rem] md:h-72 max-w-full"
       draggable="false"
       muted
       playsInline
       autoPlay
       loop
       title=""
-      style={{ height: "300px" }}
     >
       {inView && <source data-testid="videosource" type="video/mp4" src={media.mp4} />}
     </video>
