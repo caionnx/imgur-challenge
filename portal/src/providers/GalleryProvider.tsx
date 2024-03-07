@@ -74,14 +74,14 @@ export const GalleryProvider = ({
       if (parameters.search) {
         return axios
           .get(
-            `https://imgur-api.fly.dev/search?q=${encodeURI(parameters.search)}`,
+            `${process.env.INITIAL_STATE_SEARCH_API}?q=${encodeURI(parameters.search)}`,
           )
           .then((res) => res.data?.data);
       }
 
       return axios
         .get(
-          `https://imgur-api.fly.dev/gallery?${new URLSearchParams(parameters).toString()}`,
+          `${process.env.INITIAL_STATE_GALLERY_API}?${new URLSearchParams(parameters).toString()}`,
         )
         .then((res) => res.data?.data);
     },

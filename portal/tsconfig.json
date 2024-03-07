@@ -20,7 +20,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true,
-    "types": ["@testing-library/jest-dom", "@types/imgur-rest-api", "jest"]
+    "types": ["@testing-library/jest-dom", "@types/imgur-rest-api", "jest", "node"]
   },
   "include": ["src/*", "vite-env.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
