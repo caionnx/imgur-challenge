@@ -5,7 +5,7 @@ import { GalleryProvider } from "./providers/GalleryProvider";
 
 const App = ({
   initialState,
-  searchParams
+  searchParams,
 }: {
   initialState: ImgurRestApi.GalleryAlbum[] | undefined;
   searchParams: string;

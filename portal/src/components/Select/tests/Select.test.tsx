@@ -47,7 +47,7 @@ describe("Select", () => {
         label={label}
         name={name}
         onChange={handleChange}
-      />
+      />,
     );
 
     const selectElement = screen.getByRole("combobox");
@@ -57,7 +57,7 @@ describe("Select", () => {
       expect(handleChange).toHaveBeenCalledWith(
         expect.objectContaining({
           target: expect.objectContaining({ value: "2" }),
-        })
+        }),
       );
     });
   });

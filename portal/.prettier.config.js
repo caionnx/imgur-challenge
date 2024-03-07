@@ -1,24 +1,24 @@
-import tailwindcss from 'prettier-plugin-tailwindcss';
+import tailwindcss from "prettier-plugin-tailwindcss";
 
 /** @type {import("prettier").Config} */
 const config = {
-  trailingComma: 'none',
+  trailingComma: "none",
   tabWidth: 2,
   printWidth: 80,
   useTabs: false,
   semi: false,
   singleQuote: true,
-  quoteProps: 'as-needed',
+  quoteProps: "as-needed",
   bracketSpacing: true,
-  arrowParens: 'always',
+  arrowParens: "always",
   jsxBracketSameLine: false,
-  endOfLine: 'lf',
-  tailwindConfig: './tailwind.config.js',
+  endOfLine: "lf",
+  tailwindConfig: "./tailwind.config.js",
   overrides: [
     {
-      files: '.prettierrc',
+      files: ".prettierrc",
       options: {
-        parser: 'json',
+        parser: "json",
       },
     },
   ],

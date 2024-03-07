@@ -3,7 +3,7 @@ import { render, waitFor, screen, fireEvent } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import axios from "axios";
 import { GalleryProvider } from "../GalleryProvider";
-import {useGallery} from "../useGallery";
+import { useGallery } from "../useGallery";
 
 jest.mock("axios");
 
@@ -115,7 +115,7 @@ describe("GalleryProvider", () => {
         <GalleryProvider searchParams="" initialState={initialState}>
           <TestComponent />
         </GalleryProvider>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     await waitFor(() => {
@@ -129,7 +129,9 @@ describe("GalleryProvider", () => {
 
   it("should render children and fetches data from Gallery API when parameters change", async () => {
     const fakeData = [{ ...mockedGallery, title: "From API" }];
-    (axios.get as jest.Mock).mockResolvedValueOnce({ data: { data: fakeData } });
+    (axios.get as jest.Mock).mockResolvedValueOnce({
+      data: { data: fakeData },
+    });
 
     const initialState = [mockedGallery];
 
@@ -138,17 +140,19 @@ describe("GalleryProvider", () => {
         <GalleryProvider searchParams="" initialState={initialState}>
           <TestComponent />
         </GalleryProvider>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     await waitFor(() => {
-      fireEvent.click(screen.getByRole('button', { name: "Change Parameters" }));
+      fireEvent.click(
+        screen.getByRole("button", { name: "Change Parameters" }),
+      );
     });
 
     await waitFor(() => {
       expect(axios.get).toHaveBeenCalledTimes(1);
       expect(axios.get).toHaveBeenCalledWith(
-        "https://imgur-api.fly.dev/gallery?section=hot&showViral=false"
+        "https://imgur-api.fly.dev/gallery?section=hot&showViral=false",
       );
     });
 
@@ -159,7 +163,9 @@ describe("GalleryProvider", () => {
 
   it("should render children and fetches data from Search API when search parameter exists", async () => {
     const fakeData = [{ ...mockedGallery, title: "From Search API" }];
-    (axios.get as jest.Mock).mockResolvedValueOnce({ data: { data: fakeData } });
+    (axios.get as jest.Mock).mockResolvedValueOnce({
+      data: { data: fakeData },
+    });
 
     const initialState = [mockedGallery];
 
@@ -168,17 +174,17 @@ describe("GalleryProvider", () => {
         <GalleryProvider searchParams="" initialState={initialState}>
           <TestComponent />
         </GalleryProvider>
-      </QueryClientProvider>
+      </QueryClientProvider>,
     );
 
     await waitFor(() => {
-      fireEvent.click(screen.getByRole('button', { name: "Set Search" }));
+      fireEvent.click(screen.getByRole("button", { name: "Set Search" }));
     });
 
     await waitFor(() => {
       expect(axios.get).toHaveBeenCalledTimes(1);
       expect(axios.get).toHaveBeenCalledWith(
-        "https://imgur-api.fly.dev/search?q=cats"
+        "https://imgur-api.fly.dev/search?q=cats",
       );
     });
 
@@ -193,8 +199,20 @@ const TestComponent = () => {
 
   return (
     <div>
-      <button onClick={() => { setParameters({ section: 'hot', showViral: 'false' }) }}>Change Parameters</button>
-      <button onClick={() => { setParameters({ search: 'cats', section: 'hot', showViral: 'false' }) }}>Set Search</button>
+      <button
+        onClick={() => {
+          setParameters({ section: "hot", showViral: "false" });
+        }}
+      >
+        Change Parameters
+      </button>
+      <button
+        onClick={() => {
+          setParameters({ search: "cats", section: "hot", showViral: "false" });
+        }}
+      >
+        Set Search
+      </button>
       {data?.map((item) => <div key={item.id}>{item.title}</div>)}
     </div>
   );

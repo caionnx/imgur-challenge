@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { MediaProps } from "./Thumbnail";
 import { useInView } from "react-intersection-observer";
 
@@ -22,7 +22,9 @@ export const Video = ({ media }: MediaProps) => {
       loop
       title=""
     >
-      {inView && <source data-testid="videosource" type="video/mp4" src={media.mp4} />}
+      {inView && (
+        <source data-testid="videosource" type="video/mp4" src={media.mp4} />
+      )}
     </video>
   );
 };

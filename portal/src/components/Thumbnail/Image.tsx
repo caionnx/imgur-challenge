@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { MediaProps } from "./Thumbnail";
 
 export const Image = ({ media, ...rest }: MediaProps) => {

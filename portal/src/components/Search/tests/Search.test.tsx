@@ -17,7 +17,7 @@ describe("Search", () => {
         name="search"
         label="Search Images"
         onTrigger={mockOnTrigger}
-      />
+      />,
     );
 
     const input = screen.getByLabelText("Search Images");
@@ -35,7 +35,7 @@ describe("Search", () => {
         name="search"
         label="Search Images"
         onTrigger={mockOnTrigger}
-      />
+      />,
     );
 
     const input = screen.getByLabelText("Search Images");
@@ -53,7 +53,7 @@ describe("Search", () => {
         name="search"
         label="Search Images"
         onTrigger={mockOnTrigger}
-      />
+      />,
     );
 
     const input = screen.getByLabelText("Search Images");
@@ -70,7 +70,7 @@ describe("Search", () => {
         name="search"
         label="Search Images"
         onTrigger={mockOnTrigger}
-      />
+      />,
     );
 
     const button = screen.getByText("Search");

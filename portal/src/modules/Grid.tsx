@@ -60,7 +60,11 @@ export const Grid = () => {
           );
         })}
       </div>
-      <AlbumModal isOpen={Boolean(selectedAlbum)} onCloseModal={onCloseModal} album={selectedAlbum} />
+      <AlbumModal
+        isOpen={Boolean(selectedAlbum)}
+        onCloseModal={onCloseModal}
+        album={selectedAlbum}
+      />
     </>
   );
 };

@@ -42,7 +42,14 @@ describe("Thumbnail", () => {
   it("should render image with title", () => {
     const titleText = "My Test";
 
-    render(<Thumbnail id="4597" onClick={() => undefined} title={titleText} media={testMedia} />);
+    render(
+      <Thumbnail
+        id="4597"
+        onClick={() => undefined}
+        title={titleText}
+        media={testMedia}
+      />,
+    );
 
     const title = screen.getByText(titleText);
     const image = screen.getByAltText(titleText);
@@ -59,7 +66,14 @@ describe("Thumbnail", () => {
       mp4: "linktovideo",
     };
 
-    render(<Thumbnail id="4597" onClick={() => undefined} title={titleText} media={videoMedia} />);
+    render(
+      <Thumbnail
+        id="4597"
+        onClick={() => undefined}
+        title={titleText}
+        media={videoMedia}
+      />,
+    );
     mockAllIsIntersecting(true);
 
     const title = screen.getByText(titleText);

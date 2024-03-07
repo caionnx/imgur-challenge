@@ -59,24 +59,29 @@ export const GalleryProvider = ({
   searchParams: string;
 }) => {
   const [parameters, setParameters] = useState<Params>(
-    buildDefaultParameters(searchParams)
+    buildDefaultParameters(searchParams),
   );
   const enabledQuery = useRef(false);
   const { error, data, isFetching } = useQuery({
-    queryKey: ["gallery", parameters.section, parameters.showViral, parameters.search],
+    queryKey: [
+      "gallery",
+      parameters.section,
+      parameters.showViral,
+      parameters.search,
+    ],
     queryFn: () => {
       // Uses a different API in case of search
       if (parameters.search) {
         return axios
           .get(
-            `https://imgur-api.fly.dev/search?q=${encodeURI(parameters.search)}`
+            `https://imgur-api.fly.dev/search?q=${encodeURI(parameters.search)}`,
           )
           .then((res) => res.data?.data);
       }
 
       return axios
         .get(
-          `https://imgur-api.fly.dev/gallery?${new URLSearchParams(parameters).toString()}`
+          `https://imgur-api.fly.dev/gallery?${new URLSearchParams(parameters).toString()}`,
         )
         .then((res) => res.data?.data);
     },
@@ -111,7 +116,7 @@ export const GalleryProvider = ({
   };
 
   useEffect(() => {
-    window.history.replaceState(parameters, '', window.location.href);
+    window.history.replaceState(parameters, "", window.location.href);
     window.addEventListener("popstate", onPopState);
 
     return () => window.removeEventListener("popstate", onPopState);
@@ -137,4 +142,3 @@ export const GalleryProvider = ({
     </GalleryContext.Provider>
   );
 };
-

@@ -43,7 +43,7 @@ export const AlbumModal = ({
           borderRadius: 0,
           outline: "none",
           padding: 0,
-          scrollbarWidth: 'none'
+          scrollbarWidth: "none",
         },
       }}
     >

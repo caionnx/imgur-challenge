@@ -11,7 +11,7 @@ export const Refine = () => {
     (ev: React.ChangeEvent<HTMLInputElement>) => {
       setSearchTerm(ev.target.value);
     },
-    []
+    [],
   );
 
   const onSetSearch = () => {

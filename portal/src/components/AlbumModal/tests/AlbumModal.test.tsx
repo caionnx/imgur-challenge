@@ -103,7 +103,7 @@ describe("AlbumModal", () => {
         album={mockedGallery}
         isOpen={true}
         onCloseModal={mockOnCloseModal}
-      />
+      />,
     );
 
     const albumTitle = screen.getByText("Mean but funny");
@@ -121,7 +121,7 @@ describe("AlbumModal", () => {
         album={undefined}
         isOpen={false}
         onCloseModal={mockOnCloseModal}
-      />
+      />,
     );
 
     const albumTitle = screen.queryByText("Mean but funny");
@@ -135,7 +135,7 @@ describe("AlbumModal", () => {
         album={mockedGallery}
         isOpen={true}
         onCloseModal={mockOnCloseModal}
-      />
+      />,
     );
 
     const closeButton = screen.getByText("Close modal");
@@ -153,7 +153,7 @@ describe("AlbumModal", () => {
         }}
         isOpen={true}
         onCloseModal={mockOnCloseModal}
-      />
+      />,
     );
 
     const videoSource = screen.getByTestId("videosource") as HTMLSourceElement;
