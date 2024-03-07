@@ -21,7 +21,12 @@ export const AlbumModal = ({
   return (
     <ReactModal
       isOpen={isOpen}
-      className="fixed flex justify-center bg-slate-800/75 top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[100%] max-h-full"
+      style={{
+        overlay: {
+          zIndex: 20
+        },
+      }}
+      className="fixed z-20 flex justify-center bg-slate-800/75 top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[100%] max-h-full"
     >
       <div className="relative w-full max-w-7xl max-h-full">
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
