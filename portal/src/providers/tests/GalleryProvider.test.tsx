@@ -152,7 +152,7 @@ describe("GalleryProvider", () => {
     await waitFor(() => {
       expect(axios.get).toHaveBeenCalledTimes(1);
       expect(axios.get).toHaveBeenCalledWith(
-        "https://imgur-api.fly.dev/gallery?section=hot&showViral=false",
+        "https://www.mock_env.com/gallery?section=hot&showViral=false",
       );
     });
 
@@ -184,7 +184,7 @@ describe("GalleryProvider", () => {
     await waitFor(() => {
       expect(axios.get).toHaveBeenCalledTimes(1);
       expect(axios.get).toHaveBeenCalledWith(
-        "https://imgur-api.fly.dev/search?q=cats",
+        "https://www.mock_env.com/search?q=cats",
       );
     });
 

@@ -28,8 +28,8 @@ app.get("/", async (req, res) => {
     try {
       const query = new URLSearchParams(req.query);
       const apiEndpoint = query.has("q")
-        ? process.env.INITIAL_STATE_SEARCH_API
-        : process.env.INITIAL_STATE_GALLERY_API;
+        ? process.env.VITE_INITIAL_STATE_SEARCH_API
+        : process.env.VITE_INITIAL_STATE_GALLERY_API;
       apiRequest = await axios.get(`${apiEndpoint}?${query.toString()}`);
     } catch (error) {
       res.status(500).end(error);

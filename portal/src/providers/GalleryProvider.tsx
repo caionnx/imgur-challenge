@@ -74,14 +74,14 @@ export const GalleryProvider = ({
       if (parameters.search) {
         return axios
           .get(
-            `${process.env.INITIAL_STATE_SEARCH_API}?q=${encodeURI(parameters.search)}`,
+            `${import.meta.env.VITE_INITIAL_STATE_SEARCH_API}?q=${encodeURI(parameters.search)}`,
           )
           .then((res) => res.data?.data);
       }
 
       return axios
         .get(
-          `${process.env.INITIAL_STATE_GALLERY_API}?${new URLSearchParams(parameters).toString()}`,
+          `${import.meta.env.VITE_INITIAL_STATE_GALLERY_API}?${new URLSearchParams(parameters).toString()}`,
         )
         .then((res) => res.data?.data);
     },
