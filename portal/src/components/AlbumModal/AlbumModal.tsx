@@ -10,6 +10,12 @@ export const AlbumModal = ({
   isOpen: boolean;
   onCloseModal: () => void;
 }) => {
+  const appElement =
+    typeof window !== "undefined"
+      ? (document.querySelector("#app") as HTMLElement)
+      : undefined;
+  const modalPropsElement = appElement ? { appElement } : {};
+
   useEffect(() => {
     const bodyElement = document.querySelector("body");
 
@@ -20,85 +26,96 @@ export const AlbumModal = ({
 
   return (
     <ReactModal
+      {...modalPropsElement}
       isOpen={isOpen}
+      onRequestClose={onCloseModal}
+      shouldCloseOnOverlayClick
+      shouldCloseOnEsc
+      overlayClassName="fixed flex justify-center items-center z-20 bg-slate-800/75 top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[100%] max-h-full"
+      className="relative w-full max-w-7xl max-h-full"
       style={{
-        overlay: {
-          zIndex: 20
+        content: {
+          position: "initial",
+          inset: 0,
+          border: 0,
+          background: "initial",
+          overflow: "auto",
+          borderRadius: 0,
+          outline: "none",
+          padding: 0,
+          scrollbarWidth: 'none'
         },
       }}
-      className="fixed z-20 flex justify-center bg-slate-800/75 top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[100%] max-h-full"
     >
-      <div className="relative w-full max-w-7xl max-h-full">
-        <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-          <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-            <h3 className="text-xl font-medium pr-4 text-gray-900 dark:text-white">
-              {album?.title}
-            </h3>
-            <button
-              onClick={onCloseModal}
-              type="button"
-              className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+      <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+          <h3 className="text-xl font-medium pr-4 text-gray-900 dark:text-white">
+            {album?.title}
+          </h3>
+          <button
+            onClick={onCloseModal}
+            type="button"
+            className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+          >
+            <svg
+              className="w-3 h-3"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 14 14"
             >
-              <svg
-                className="w-3 h-3"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 14"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                />
-              </svg>
-              <span className="sr-only">Close modal</span>
-            </button>
-          </div>
-          <div className="p-4 md:p-5 space-y-4">
-            {album?.images.map((media) => {
-              return (
-                <div key={media.id}>
-                  <center>
-                    {media.mp4 ? (
-                      <video
-                        className="h-auto max-w-full"
-                        draggable="false"
-                        controls
-                        muted={album?.images.length > 1}
-                        playsInline
-                        autoPlay
-                        loop
-                      >
-                        <source
-                          data-testid="videosource"
-                          type="video/mp4"
-                          src={media.mp4}
-                        />
-                      </video>
-                    ) : (
-                      <img
-                      className="max-w-full lg:max-w-xl"
-                        alt={media.description || album?.title}
-                        src={media.link}
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+              />
+            </svg>
+            <span className="sr-only">Close modal</span>
+          </button>
+        </div>
+        <div className="p-4 md:p-5 space-y-4">
+          {album?.images.map((media) => {
+            return (
+              <div key={media.id}>
+                <center>
+                  {media.mp4 ? (
+                    <video
+                      className="h-auto max-w-full"
+                      draggable="false"
+                      controls
+                      muted={album?.images.length > 1}
+                      playsInline
+                      autoPlay
+                      loop
+                    >
+                      <source
+                        data-testid="videosource"
+                        type="video/mp4"
+                        src={media.mp4}
                       />
-                    )}
-                  </center>
-                  <p className="text-base max-w-prose	leading-relaxed pt-2 dark:text-gray-100">
-                    {media.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-          <div className="p-4 md:p-5 space-x-3 rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
-            <p className="text-base text-center	leading-relaxed dark:text-white">
-              {album?.ups} ⬆️ / {album?.downs} ⬇️ / {album?.score} ⭐ /{" "}
-              {album?.views} 👀
-            </p>
-          </div>
+                    </video>
+                  ) : (
+                    <img
+                      className="max-w-full lg:max-w-xl"
+                      alt={media.description || album?.title}
+                      src={media.link}
+                    />
+                  )}
+                </center>
+                <p className="text-base max-w-prose	leading-relaxed pt-2 dark:text-gray-100">
+                  {media.description}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+        <div className="p-4 md:p-5 space-x-3 rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
+          <p className="text-base text-center	leading-relaxed dark:text-white">
+            {album?.ups} ⬆️ / {album?.downs} ⬇️ / {album?.score} ⭐ /{" "}
+            {album?.views} 👀
+          </p>
         </div>
       </div>
     </ReactModal>
