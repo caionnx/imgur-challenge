@@ -11,4 +11,4 @@ if (typeof window !== 'undefined') {
   initialState = window.__initialState__;
 }
 
-hydrateRoot(document.getElementById('app') as HTMLElement, <App initialState={initialState} />);
+hydrateRoot(document.getElementById('app') as HTMLElement, <App initialState={initialState} searchParams={window.location.search} />);

@@ -35,6 +35,7 @@ export const Refine = () => {
       { value: "top", label: "Top" },
       { value: "user", label: "User" },
     ],
+    value: parameters.section,
     label: "Section:",
     name: "section",
     onChange: (ev: ChangeEvent<HTMLSelectElement>) => {
@@ -48,6 +49,7 @@ export const Refine = () => {
       { value: "false", label: "No" },
     ],
     label: "Show virals:",
+    value: parameters.showViral,
     name: "virals",
     onChange: (ev: ChangeEvent<HTMLSelectElement>) => {
       setParameters({ ...parameters, showViral: ev.target.value });

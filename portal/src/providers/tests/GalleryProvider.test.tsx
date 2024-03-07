@@ -111,7 +111,7 @@ describe("GalleryProvider", () => {
 
     render(
       <QueryClientProvider client={queryClient}>
-        <GalleryProvider initialState={initialState}>
+        <GalleryProvider searchParams="" initialState={initialState}>
           <TestComponent />
         </GalleryProvider>
       </QueryClientProvider>
@@ -134,7 +134,7 @@ describe("GalleryProvider", () => {
 
     render(
       <QueryClientProvider client={queryClient}>
-        <GalleryProvider initialState={initialState}>
+        <GalleryProvider searchParams="" initialState={initialState}>
           <TestComponent />
         </GalleryProvider>
       </QueryClientProvider>
@@ -164,7 +164,7 @@ describe("GalleryProvider", () => {
 
     render(
       <QueryClientProvider client={queryClient}>
-        <GalleryProvider initialState={initialState}>
+        <GalleryProvider searchParams="" initialState={initialState}>
           <TestComponent />
         </GalleryProvider>
       </QueryClientProvider>

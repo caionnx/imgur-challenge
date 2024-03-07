@@ -5,14 +5,16 @@ import { GalleryProvider } from "./providers/GalleryProvider";
 
 const App = ({
   initialState,
+  searchParams
 }: {
   initialState: ImgurRestApi.GalleryAlbum[] | undefined;
+  searchParams: string;
 }) => {
   const [queryClient] = useState(() => new QueryClient());
 
   return (
     <QueryClientProvider client={queryClient}>
-      <GalleryProvider initialState={initialState}>
+      <GalleryProvider initialState={initialState} searchParams={searchParams}>
         <Home />
       </GalleryProvider>
     </QueryClientProvider>

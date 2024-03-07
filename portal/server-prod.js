@@ -20,13 +20,15 @@ app.get('/', async (req, res) => {
 
     let apiRequest = null;
     try {
-      apiRequest = await axios.get(`${process.env.INITIAL_STATE_API}?${new URLSearchParams(req.query).toString()}`);
+      const query = new URLSearchParams(req.query);
+      const apiEndpoint = query.has('q') ? process.env.INITIAL_STATE_SEARCH_API : process.env.INITIAL_STATE_GALLERY_API
+      apiRequest = await axios.get(`${apiEndpoint}?${query.toString()}`);
     } catch (error) {
-      console.log(error);
+      res.status(500).end(error);
     }
 
     const script = `<script>window.__initialState__=${JSON.stringify(apiRequest.data?.data)}</script>`;
-    const html = template.replace(`<!--ssr-output-->`, `${render(apiRequest.data?.data)} ${script}`);
+    const html = template.replace(`<!--ssr-output-->`, `${render(apiRequest.data?.data, req.url.replace('/?', ''))} ${script}`);
 
     res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
   } catch (error) {
