@@ -126,7 +126,7 @@ describe("GalleryProvider", () => {
     });
   });
 
-  it("should renders children and fetches data from API when parameters change", async () => {
+  it("should render children and fetches data from Gallery API when parameters change", async () => {
     const fakeData = [{ ...mockedGallery, title: "From API" }];
     (axios.get as jest.Mock).mockResolvedValueOnce({ data: { data: fakeData } });
 
@@ -141,7 +141,7 @@ describe("GalleryProvider", () => {
     );
 
     await waitFor(() => {
-      fireEvent.click(screen.getByRole('button'));
+      fireEvent.click(screen.getByRole('button', { name: "Change Parameters" }));
     });
 
     await waitFor(() => {
@@ -155,6 +155,36 @@ describe("GalleryProvider", () => {
       expect(screen.getByText("From API")).toBeInTheDocument();
     });
   });
+
+  it("should render children and fetches data from Search API when search parameter exists", async () => {
+    const fakeData = [{ ...mockedGallery, title: "From Search API" }];
+    (axios.get as jest.Mock).mockResolvedValueOnce({ data: { data: fakeData } });
+
+    const initialState = [mockedGallery];
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <GalleryProvider initialState={initialState}>
+          <TestComponent />
+        </GalleryProvider>
+      </QueryClientProvider>
+    );
+
+    await waitFor(() => {
+      fireEvent.click(screen.getByRole('button', { name: "Set Search" }));
+    });
+
+    await waitFor(() => {
+      expect(axios.get).toHaveBeenCalledTimes(1);
+      expect(axios.get).toHaveBeenCalledWith(
+        "https://imgur-api.fly.dev/search?q=cats"
+      );
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText("From Search API")).toBeInTheDocument();
+    });
+  });
 });
 
 const TestComponent = () => {
@@ -163,6 +193,7 @@ const TestComponent = () => {
   return (
     <div>
       <button onClick={() => { setParameters({ section: 'hot', showViral: 'false' }) }}>Change Parameters</button>
+      <button onClick={() => { setParameters({ search: 'cats', section: 'hot', showViral: 'false' }) }}>Set Search</button>
       {data?.map((item) => <div key={item.id}>{item.title}</div>)}
     </div>
   );
