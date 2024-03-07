@@ -18,7 +18,15 @@ export const Thumbnail = ({ media, title, onClick, id }: ThumbnailProps) => {
   return (
     <div
       tabIndex={0}
+      aria-label={`${title}`}
       onClick={() => onClick(id)}
+      onKeyDown={event => {
+        if (event.code === 'Space' || event.code === 'Enter') {
+          event.preventDefault();
+          event.stopPropagation();
+          onClick(id);
+        }
+      }}
       className="cursor-pointer flex relative justify-center rounded-sm border-r border-b border-l border-gray-900 bg-slate-800"
     >
       {media.type === "video/mp4" ? (
