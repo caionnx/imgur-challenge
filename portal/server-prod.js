@@ -9,6 +9,7 @@ import compression from "compression";
 dotenv.config();
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 app.use(compression());
 app.use(
@@ -46,6 +47,6 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.listen(5173, () => {
-  console.log("http://localhost:5173.");
+app.listen(port, () => {
+  console.log(`[portal]: App is running at http://localhost:${port}`);
 });
