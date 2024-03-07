@@ -16,7 +16,7 @@ export const Select = ({
   ...rest
 }: Props) => {
   return (
-    <div className="relative w-full md:w-48">
+    <div className={containerClassName || "relative w-full md:w-48"}>
       <label
         htmlFor={name}
         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"

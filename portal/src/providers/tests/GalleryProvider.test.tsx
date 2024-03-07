@@ -2,7 +2,8 @@ import React from "react";
 import { render, waitFor, screen, fireEvent } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import axios from "axios";
-import { GalleryProvider, useGallery } from "../GalleryProvider";
+import { GalleryProvider } from "../GalleryProvider";
+import {useGallery} from "../useGallery";
 
 jest.mock("axios");
 

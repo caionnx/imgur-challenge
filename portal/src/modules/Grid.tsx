@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Thumbnail } from "../components/Thumbnail/Thumbnail";
 import { AlbumModal } from "../components/AlbumModal/AlbumModal";
-import { useGallery } from "../providers/GalleryProvider";
+import { useGallery } from "../providers/useGallery";
 
 export const Grid = () => {
   const { data, parameters, setParameters, isFetching } = useGallery();

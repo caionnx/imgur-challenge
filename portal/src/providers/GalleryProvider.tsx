@@ -1,6 +1,5 @@
 import React, {
   createContext,
-  useContext,
   useState,
   ReactNode,
   useRef,
@@ -48,7 +47,7 @@ const buildDefaultParameters = (searchParams: string) => {
   return result;
 };
 
-const GalleryContext = createContext(defaultContextValue);
+export const GalleryContext = createContext(defaultContextValue);
 
 export const GalleryProvider = ({
   initialState,
@@ -116,6 +115,7 @@ export const GalleryProvider = ({
     window.addEventListener("popstate", onPopState);
 
     return () => window.removeEventListener("popstate", onPopState);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -138,10 +138,3 @@ export const GalleryProvider = ({
   );
 };
 
-export const useGallery = () => {
-  const context = useContext(GalleryContext);
-  if (!context) {
-    throw new Error("useGallery must be used within a GalleryProvider");
-  }
-  return context;
-};

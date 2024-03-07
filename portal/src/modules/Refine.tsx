@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useCallback, useState } from "react";
 import { Select } from "../components/Select/Select";
 import { Search } from "../components/Search/Search";
-import { useGallery } from "../providers/GalleryProvider";
+import { useGallery } from "../providers/useGallery";
 
 export const Refine = () => {
   const { parameters, setParameters } = useGallery();
@@ -14,10 +14,10 @@ export const Refine = () => {
     []
   );
 
-  const onSetSearch = useCallback(() => {
+  const onSetSearch = () => {
     setParameters({ ...parameters, search });
     setSearchTerm("");
-  }, [search]);
+  };
 
   const searchInputProps = {
     value: search,
