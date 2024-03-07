@@ -27,8 +27,8 @@ export function buildGalleryPathAndParameters(requestParameters: Record<string, 
 }
 
 const GallerySearchValidPaths = new Map();
-GallerySearchValidPaths.set('sort', 'viral');
-GallerySearchValidPaths.set('window', 'week');
+GallerySearchValidPaths.set('sort', 'time');
+GallerySearchValidPaths.set('window', 'all');
 GallerySearchValidPaths.set('page', '1');
 
 export function buildSearchPathAndParameters(requestParameters: Record<string, any>) {
