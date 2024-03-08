@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
+const port = process.env.PORT || 5858;
 
 const vite = await createServer({
   server: {
@@ -50,6 +51,6 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.listen(4040, () => {
-  console.log("Portal is ready at http://localhost:4040.");
+app.listen(port, () => {
+  console.log(`[portal-dev]: App is running at http://localhost:${port}`);
 });

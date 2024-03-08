@@ -9,7 +9,7 @@ import compression from "compression";
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5858;
 
 app.use(compression());
 app.use(
