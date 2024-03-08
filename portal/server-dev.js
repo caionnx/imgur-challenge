@@ -24,7 +24,7 @@ app.get("/", async (req, res) => {
   try {
     const template = await vite.transformIndexHtml(
       url,
-      fs.readFileSync("index.html", "utf-8"),
+      fs.readFileSync("index.html", "utf-8")
     );
     const { render } = await vite.ssrLoadModule("/src/entries/server.tsx");
 
@@ -42,7 +42,7 @@ app.get("/", async (req, res) => {
     const script = `<script>window.__initialState__=${JSON.stringify(apiRequest.data?.data)}</script>`;
     const html = template.replace(
       `<!--ssr-output-->`,
-      `${render(apiRequest.data?.data, req.url.replace("/?", ""))} ${script}`,
+      `${render(apiRequest.data?.data, req.url.replace("/?", ""))} ${script}`
     );
 
     res.status(200).set({ "Content-Type": "text/html" }).end(html);
@@ -52,5 +52,13 @@ app.get("/", async (req, res) => {
 });
 
 app.listen(port, () => {
+  if (
+    !process.env.VITE_INITIAL_STATE_SEARCH_API ||
+    !process.env.VITE_INITIAL_STATE_GALLERY_API
+  ) {
+    console.log("[portal-dev]: Missing env variables");
+
+    return;
+  }
   console.log(`[portal-dev]: App is running at http://localhost:${port}`);
 });

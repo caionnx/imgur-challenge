@@ -48,5 +48,13 @@ app.get("/", async (req, res) => {
 });
 
 app.listen(port, () => {
+  if (
+    !process.env.VITE_INITIAL_STATE_SEARCH_API ||
+    !process.env.VITE_INITIAL_STATE_GALLERY_API
+  ) {
+    console.log("[portal]: Missing env variables");
+
+    return;
+  }
   console.log(`[portal]: App is running at http://localhost:${port}`);
 });
