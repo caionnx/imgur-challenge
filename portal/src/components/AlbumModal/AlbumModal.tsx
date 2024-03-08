@@ -47,15 +47,15 @@ export const AlbumModal = ({
         },
       }}
     >
-      <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-        <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-          <h3 className="text-xl font-medium pr-4 text-gray-900 dark:text-white">
+      <div className="relative rounded-lg shadow bg-gray-700">
+        <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-600">
+          <h3 className="text-xl font-medium pr-4 text-gray-900 text-white">
             {album?.title}
           </h3>
           <button
             onClick={onCloseModal}
             type="button"
-            className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+            className="text-gray-400 bg-transparent rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center hover:bg-gray-600 hover:text-white"
           >
             <svg
               className="w-3 h-3"
@@ -104,15 +104,15 @@ export const AlbumModal = ({
                     />
                   )}
                 </center>
-                <p className="text-base max-w-prose	leading-relaxed pt-2 dark:text-gray-100">
+                <p className="text-base max-w-prose	leading-relaxed pt-2 text-gray-100">
                   {media.description}
                 </p>
               </div>
             );
           })}
         </div>
-        <div className="p-4 md:p-5 space-x-3 rtl:space-x-reverse border-t border-gray-200 rounded-b dark:border-gray-600">
-          <p className="text-base text-center	leading-relaxed dark:text-white">
+        <div className="p-4 md:p-5 space-x-3 rtl:space-x-reverse border-t rounded-b border-gray-600">
+          <p className="text-base text-center	leading-relaxed text-white">
             {album?.ups} ⬆️ / {album?.downs} ⬇️ / {album?.score} ⭐ /{" "}
             {album?.views} 👀
           </p>
